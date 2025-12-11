@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+		<title>Job Portal - University of Luxembourg</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="bizpac.css?20120426en" />
+
+           <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+           <script>
+                  window.onload = function(){
+                                if(document.getElementById("sUserLogin")){
+                                document.getElementById("sUserLogin").tabIndex = 10000;
+                                                                         }
+                                if(document.getElementById("sUserPassword")){
+                                document.getElementById("sUserPassword").tabIndex = 10001;
+                                                                         }
+                                if(document.getElementById("loginchp")){
+                                document.getElementById("loginchp").tabIndex = 10002;
+                                                                         }
+                                $("input:radio").bind('click', function() {
+                                document.getElementById("lay9999_src350a").submit();
+                                                                           });
+                                            }
+
+
+
+          </script>
+
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+
+	  <script type="text/javascript">
+
+	/* created by [AS] 27/09/2012 */
+
+	jQuery(document).ready(function() {
+
+		/* REMOVE ALL EMPTY P Tags */
+		jQuery('p').filter(function() {
+        		return jQuery.trim(jQuery(this).text()) === '' && jQuery(this).children().length == 0
+    		}).remove();
+
+		/* REMOVE EMPTY TAGS */
+        	jQuery(document).ready(function() {
+                	jQuery("p,strong,em,span").each(function() {
+                        	if (jQuery.trim(jQuery(this).text()) === "") {
+                                	jQuery(this).remove();
+                        	}
+                	});
+        	});
+
+	/* Removes Job Alert */
+    	//jQuery('td.rightcell div.head').first().remove();
+
+
+    	/* UNI.LU CUSTOM SORT FOR RESULT TABLE */
+		var contentArray = new Array();
+		var textArray = new Array();
+		var p0 = new Array();
+		var p1 = new Array();
+		var p2 = new Array();
+		var p3 = new Array();
+		var p4 = new Array();
+		var p5 = new Array();
+
+		var others = new Array();
+		var priorities = new Array();
+
+		priorities[0] = ["Recteur","Rector","President","Rektor","Vice-recteur","Director","Directeur","Direktor","Head","Responsable","Abteilungsleiter","Manager"];
+                priorities[1] = ["Professeur","Professor","Ordentlicher Professor"];
+                priorities[2] = ["Assistant professeur","Assistant Professeur","Associate Professor"];
+                priorities[3] = ["ChargÃ© de cours","Dozent","Enseignants vacataires","Enseignant vacataire"];
+                priorities[4] = ["Assistant (e) du vice-recteur","Postdoktorandestelle","Postdoc","Postdoctoral","Post doc","Research Associate (Postdoc)","Research Associate (Postdocs)","Research Associate (post doc)","Research Associates(post docs)","Research Associates (Postdocs)","Research Associate (PostDoc)"];
+                priorities[5] = ["PhD-student","PhD Student","PhD Candidates","PhD candidates","PhD candidate","PhD student","Doctoral candidate","Doktorand","Doctoral candidates"];       
+
+		jQuery('table.Lst-Tabel:first tr').each(function(indexParent) {
+
+			contentArray[indexParent] = new Array();
+			textArray[indexParent] = new Array();
+
+		    jQuery(this).children().each(function(indexChild) {
+		      contentArray[indexParent][indexChild] = jQuery(this).html();
+		      if (jQuery(this).find('a').length != 0) {
+		      	textArray[indexParent][indexChild] = jQuery(this).find('a').text();
+		      }else{
+		     	textArray[indexParent][indexChild] = "";
+		      }
+		    });
+
+		});
+
+		fnd = 0;
+
+		for(var i=0; i < textArray.length; i++){
+		
+			fnd = 0;
+			
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+				for(var j=0; j < priorities[0].length; j++){
+					if(textArray[i][0].indexOf(priorities[0][j]) == 0){
+						p0.push(contentArray[i]);
+						fnd=1;
+						break;
+					}
+				}
+			}
+
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+				for(var j=0; j < priorities[1].length; j++){
+					if(textArray[i][0].indexOf(priorities[1][j]) == 0){
+						p1.push(contentArray[i]);
+						fnd=1;
+						break;
+					}
+				}
+			}
+
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+                                for(var j=0; j < priorities[2].length; j++){
+                                        if(textArray[i][0].indexOf(priorities[2][j]) == 0){
+                                                p2.push(contentArray[i]);
+                                                fnd=1;
+						break;
+                                        }
+                                }
+                        }
+
+
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+                                for(var j=0; j < priorities[3].length; j++){
+                                        if(textArray[i][0].indexOf(priorities[3][j]) == 0){
+                                                p3.push(contentArray[i]);
+                                                fnd=1;
+						break;
+                                        }
+                                }
+                        }
+
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+                                for(var j=0; j < priorities[4].length; j++){
+                                        if(textArray[i][0].indexOf(priorities[4][j]) == 0){
+                                                p4.push(contentArray[i]);
+                                                fnd=1;
+						break;
+                                        }
+                                }
+                        }
+
+                        if(fnd == 0 && (i!=0 && i!= textArray.length-1)){
+                                for(var j=0; j < priorities[5].length; j++){
+                                        if(textArray[i][0].indexOf(priorities[5][j]) == 0){
+                                                p5.push(contentArray[i]);
+                                                fnd=1;
+						break;
+                                        }
+                                }
+                        }
+
+
+			if(fnd == 0 && (i!=0 && i!= textArray.length-1) ){
+				others.push(contentArray[i]);
+				fnd=1;
+			}
+
+		}
+
+		var final = p0.concat(p1,p2,p3,p4,p5,others);
+		
+		var rows = jQuery('tr.Lst-Header').nextAll('tr[class]');
+		
+		for(var i=0; i < final.length; i++)
+		{
+			if(jQuery(rows[i]).hasClass('Lst-BG1') || jQuery(rows[i]).hasClass('Lst-BG2')){
+	    		jQuery(rows[i]).children('td').each(function(index) {
+	    			jQuery(this).html(final[i][index]);
+				});
+			}
+		}
+	
+		
+		jQuery('table.Lst-Tabel').show();
+
+
+ 	});
+
+
+
+</script>
+<!--new-->
+    </head>
+
+    <body>
+        <center>
+            <div class="outerdiv">
+             <table class="maintable" border="0" cellpadding="0" cellspacing="0">
+                 <tr>
+
+                    <td class="topcell" colspan="2">
+                        <a href="../de/index.html?Resultsperpage=50">DE</a> |
+                                    <a href="index.html?Resultsperpage=50">EN</a> |
+                                    <a href="../fr/index.html?Resultsperpage=50">FR</a>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="headercell" colspan="2">
+                        <div style="position:relative;">
+                            <img src="../images/index_header.jpg" />
+</div>
+                                                <div id="willkommen">Welcome to the University of Luxembourgâs Job opportunities.<br> 
+Here you can view our current vacancies.
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="body">
+
+                            <!-- search criteria componant -->
+                            <script type="text/javascript" language="JavaScript" src="https://emea3.recruitmentplatform.com/syndicated/lay/laydisplayrapido.cfm?ID=QMUFK026203F3VBQB7V7VV4S8&component=lay9999_src350a&LG=UK&mask=karriereseiten&browserchk=no"></script>
+                            <noscript><span class="linkbracket">[</span><a class="" href="https://pv28.recruitmentplatform.com/syndicated/lay/jsoutputinitrapido.cfm?ID=PXCFK026203F3VB8M8M6GQWFM&component=lay9999_src350a&LG=UK&mask=karriereseiten&browserchk=no" title="Job Search" accesskey="" tabindex="1" target="_blank">Search Jobs</a><span class="linkbracket">]</span><span class="NewPopUp">(Please note: this link will open the page in a new browser window.)</span></noscript>
+
+                            <!-- ************************ -->
+
+                            <!-- search results componant -->
+                            <script type="text/javascript" language="JavaScript" src="https://emea3.recruitmentplatform.com/syndicated/lay/laydisplayrapido.cfm?ID=QMUFK026203F3VBQB7V7VV4S8&component=lay9999_lst400a&LG=UK&mask=karriereseiten&browserchk=no&JobAdLG=UK"></script>
+                            <noscript><span class="linkbracket">[</span><a class="" href="https://pv28.recruitmentplatform.com/syndicated/lay/jsoutputinitrapido.cfm?ID=PXCFK026203F3VB8M8M6GQWFM&component=lay9999_src350a&mask=karriereseiten&browserchk=no&JobAdLG=UK" title="Job Search" accesskey="" tabindex="1" target="_blank">Search Jobs</a><span class="linkbracket">]</span><span class="NewPopUp">(Please note: this link will open the page in a new browser window.)</span></noscript>
+                            <!-- ************************ -->
+
+                    </td>
+                    <td class="rightcell">
+
+                        <div class="head">Job Alert</div>
+
+                        <br /><br />
+
+                        <div class="head">Candidate Login</div>
+
+                        <!-- login componant -->
+                        <script type="text/javascript" language="JavaScript" src="https://emea3.recruitmentplatform.com/syndicated/lay/laydisplayrapido.cfm?ID=QMUFK026203F3VBQB7V7VV4S8&component=lay9999_chplog&LG=UK&mask=karriereseiten&browserchk=no"></script>
+                        <noscript><span class="linkbracket">[</span><a class="" href="https://emea3.recruitmentplatform.com/syndicated/lay/jsoutputinitrapido.cfm?ID=QMUFK026203F3VBQB7V7VV4S8&component=lay9999_chplog&LG=UK&mask=karriereseiten" title="Login" accesskey="" tabindex="1" target="_blank">Login</a><span class="linkbracket">]</span><span class="NewPopUp">(Please note: this link will open the page in a new browser window.)</span></noscript>
+
+                        <!-- *************** -->
+                         
+                        <!-- Euraxess info  -->  <br /> 
+                         <div id="euraxess"><a href="http://www.euraxess.lu/jobs/search/country/luxembourg-1107" target="_blank">Further research jobs in Luxembourg</a></div>
+                        <br /><center><a href="http://www.euraxess.lu/jobs/search/country/luxembourg-1107" target="_blank"><img src="../images/Logo_Euraxess.png" border="no"/></a></center>
+                       
+                        <!-- *************** -->
+
+                    </td>
+                </tr>
+             </table>
+             </div>
+        </center>
+    </body>
+</html>
